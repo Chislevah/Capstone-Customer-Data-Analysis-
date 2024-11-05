@@ -147,7 +147,6 @@ Data visualization on Excel:
 <img width="960" alt="Screenshot 2024-11-05 133911" src="https://github.com/user-attachments/assets/fe108287-d294-4b1d-aa57-41413cb49c8e">
 
 
-
 #### Analysis with SQL
 
 Since I’ve already given  detailed explanation on how to import my data into my SSMS in my sales repository, I’ll go straight to the various analysis I ran on my customer data. After importing my sales data into my database, the first query I ran was to be able to see the results of my newly imported table. 
@@ -156,9 +155,7 @@ Select * from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET]
 ```
 This showed me the result of  my table with the fields and a total of 75,000 records. The importation process was quite easy up till the point I got to declaring my primary key. I was confused at first because I assumed I had thoroughly cleaned my data on excel before turning it to a CSV file, but to my amazement I was completely wrong. I still carried out my analysis based on the 75,000 records, until I stumbled on a chat in our data analysis group chat on telegram, God bless those ladies because I owe part of the success of this project to them. So to cut the long story short, I began my research and found out that while it’s not really necessary to declare a primary key it’s quite important cause it helps in cleaning the data and removing duplicates so as to ensure data integrity. If time permitted maybe I may have given analysis based on my unclean data but for purpose of this project I’ll work with my cleaned data. So I had to run another analysis to completely clean my data on SQL. It wasn’t easy but it was absolutely worth it. At the end I had a total of 20 records after cleaning my file in SQL.
 
-
 Below is the outline of the SQL queries that was used for each task:
-
 
 a.	Retrieve the total number of customers from each region: this return the total number of customers in each region.
 ```sql
@@ -222,12 +219,10 @@ I also ran some further analysis for the benefit of it. This analysis can be fou
 <img width="960" alt="Screenshot 2024-11-05 134916" src="https://github.com/user-attachments/assets/00ea5e52-83a8-45cc-b3ef-48958906a103">
 
 
-
 #### POWERBI –CUSTOMER-ANALYSIS
 
 After importing my data from my excel workbook into my bi, I had to clean my data cause if you remember I mentioned my excel didn’t do the work. I think it partly because I’m working with a 2007 excel workbook. 
 So I transformed my data, deleted the null column, imputed some conditional columns and made my data type to be accurate. I closed and applied my changes. I calculated some columns and measures on my table view, which can be seen below:
-
 
 -	Total Revenue: Sum of revenue from all customers.
 Measure: Create a DAX measure for total revenue, such as; 
@@ -271,15 +266,14 @@ New Customers = COUNTROWS(FILTER('Dataset', 'Dataset'[Subscription Start] >= DAT
 Returning Customers = COUNTROWS(FILTER('Dataset', 'Dataset'[Subscription Start] < DATE(YEAR(TODAY()), 1, 1)))
 ```
 
-
 Visualizations with BI
 
 I used, line charts and bar charts to show the trend of new and retained subscriptions over time. I also created a time series visual with Order Date or Subscription Start as the x-axis and display the measures above as series, stacked bar charts to compare new and retained subscriptions for different months or years and other visuals are included in the work.
 1. Cards
-   a. Total Revenue: Display the overall revenue.
-   b. Active Customers: Number of active customers.
-   c. Latest and earliest Subscription: Date, month and year of the various subscription periods.
-   d. Churn Rate: Percentage of churned customers.
+   - Total Revenue: Display the overall revenue.
+   - Active Customers: Number of active customers.
+   -  Latest and earliest Subscription: Date, month and year of the various subscription periods.
+   -  Churn Rate: Percentage of churned customers.
    
 2. Line Charts
    - Revenue Over Time: Monthly or quarterly revenue trends.
@@ -305,17 +299,31 @@ I used, line charts and bar charts to show the trend of new and retained subscri
 7. Tables
    - Detailed Customer Data: Include columns like customer name, ID, subscription type, start date, end date, revenue, and status.
    - Top 10 Customers: Sort customers by revenue to display the top contributors.
+     
 8. Area Charts
    - Total Revenue and Churn Over Time: Visualize trends with an emphasis on cumulative changes over time.
+     
 9. Slicers
   - Region, Product, and Subscription Type: Let users filter data across multiple visuals for more detailed insights.
   - Date Filters: Allow filtering by specific time frames (e.g., month, quarter, year).
+    
 10.  Gauge Chart
   - Churn Rate vs. Target: Visualize how current churn rate measures up against a set target.
+    
 11. Matrix Visuals
     - Revenue by Region and Product: Present revenue data in a grid format that allows cross-referencing.
     - Customer Count by Subscription Type and Region: Display counts with cross-filtering capabilities.
-   
+
+Actual Visualization
+
+<img width="960" alt="Screenshot 2024-11-05 132638" src="https://github.com/user-attachments/assets/6ec336dd-64b6-44e7-ab64-d522445764b5">
+
+<img width="960" alt="Screenshot 2024-11-05 133146" src="https://github.com/user-attachments/assets/3fa6f217-a1b5-4bbc-a65e-d0f2545ba9e8">
+
+<img width="960" alt="Screenshot 2024-11-05 133100" src="https://github.com/user-attachments/assets/e9375b0f-425b-4baa-95bb-da8fc6271c32">
+
+<img width="960" alt="Screenshot 2024-11-05 132819" src="https://github.com/user-attachments/assets/2af3ba12-031f-42b8-b45a-b097aa67f4a9">
+
       
 ### Importance of this Project
 
