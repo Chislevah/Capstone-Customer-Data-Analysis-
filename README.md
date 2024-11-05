@@ -97,9 +97,27 @@ Insert a Pivot Table. Drag Region to the "Rows" area and Revenue to the "Values"
 - Customer Lifetime Value (CLTV): Calculate the total revenue each customer has brought in. Use a Pivot Table with Customer ID in the "Rows" area and Revenue in the "Values" area.
 - Segmentation by Region: Group customers by region and analyze total revenue and churn by region.
 -  Revenue from Active vs. Cancelled Customers: Create a Pivot Table showing the count of active vs. cancelled customers. Drag Cancelled to the "Rows" area and Customer ID to the "Values" area (set to "Count"). In the same Pivot Table, add Revenue to the "Values" area to analyze the total revenue from active vs. cancelled customers.
+
+
 -  Retention by Subscription Type: To see how long customers are retaining their subscriptions by type. Use a Pivot Table with Subscription Type in the "Rows" area and the new column for Subscription Duration in the "Values" area (set to "Average").
 -  Average Revenue by Subscription Type: Use a Pivot Table to find the average revenue per subscription type. Insert Subscription Type in the "Rows" area and Revenue in the "Values" area. Change the calculation in the Pivot Table to show the average revenue by going to Value Field Settings and selecting Average.
 -	Cancelled Subscriptions by Product: Identify which products have higher cancellation rates. Use a Pivot Table with Product in the "Rows" area, Cancelled in the "Columns" area, and Customer ID (set to "Count") in the "Values" area.
 -	Subscription Duration by Region: Analyze if subscriptions tend to last longer in certain regions. Insert a Pivot Table with Region in the "Rows" area and Subscription Duration in the "Values" area (set to "Average").
 -	Most Popular Subscription Type: Drag Subscription Type to the "Rows" area. Drag Customer ID to the "Values" area, and make sure it shows "Count of Customer ID." This will show the number of customers subscribed to each subscription type. In the Pivot Table, click the drop-down arrow next to Subscription Type. Choose Sort Largest to Smallest based on the count of Customer ID. The subscription type at the top of the list is the most popular one.
+
+<img width="960" alt="Screenshot 2024-11-05 133649" src="https://github.com/user-attachments/assets/20268883-ac0d-4f92-95fb-5d84ebeda29d">
+
+<img width="960" alt="Screenshot 2024-11-05 133616" src="https://github.com/user-attachments/assets/8000ab96-87a1-4be0-8cff-a2840b1fe7d5">
+
+<img width="960" alt="Screenshot 2024-11-05 133452" src="https://github.com/user-attachments/assets/e25b5236-f2b8-4022-bb09-a6428e31387e">
+
+<img width="960" alt="Screenshot 2024-11-05 133649" src="https://github.com/user-attachments/assets/2b326d25-b013-4b8b-9ee1-5e4feb928c96">
+
+Data visualization on Excel:
+- Trend Analysis (Graph): Create a line chart to visualize the trend of new subscriptions over time.
+- 	Visualize the data using a pie chart to show the proportion of active and cancelled customers.
+- 	Visualization using Bar Charts for comparing regions, products, or subscription types.
+
+
+
 
