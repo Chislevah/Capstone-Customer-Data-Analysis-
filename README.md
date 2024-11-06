@@ -47,7 +47,7 @@ This project is a comprehensive customer data analysis focused on customer and s
     -  Key Analyses: Pivot tables summarizing revenue by region and product. Custom charts to illustrate customer growth and segmentation. Use of Excel functions for calculating active and churned customers.
 
 
-### What You Can Learn from This Project
+### What You Can Learn from this Project
 ---
 - BI Techniques: How to create interactive dashboards, design visuals for KPIs, and write DAX formulas.
 - SQL Skills: Techniques for data extraction and custom SQL reporting to support business analysis.
@@ -57,19 +57,23 @@ This project is a comprehensive customer data analysis focused on customer and s
 #### Data Analysis with Excel
 ---
 To analyze this customer data, I first of all created some new columns to help me through my analyses. They columns I created, I named; churned customers, subscription duration and subscription start date.
+
 1.	Churned customers: created using conditional formatting.
 ```excel
 =IF(false, 1,0)
 ```
  This means that if canceled is true it should return 1 but if it’s false it should return 0. The false or 0 represents the active customers while the true or 1 represents the churned customers. This column was created in order to be able to run analysis, on actual figures since analysis on text are limited on excel.
+ 
 2.	Subscription duration. The next column I created, was the subscription duration column. This column was created in order to know the duration of period or the time frame it took from the beginning of the listing till the end of the listing. It’s calculated thus; 
 ```excel
 = subscription end – subscription start.
 ```
+
 3.	Subscription start date: This column was created in order to help format the subscription start into ‘yyyy-mm’ format. This means that the subscription duration would now be in a format of the year and month only. This is an optional column. The formula is;
 ```excel
 =TEXT( subscription start, ‘yyyy-mm’).
 ```
+
 The following are some other steps are applied in running some calculations on my dataset.
 
 a.	Revenue loss due to churn: 
@@ -96,12 +100,13 @@ f.	Average subscription duration:
 ```excel
 = AVG(subscription duration)
 ```
-g.	Total number of basic subscription: This applies to the other subscription types too, with slight change made on the criteria alone.
+g.	Total number of basic subscription: This applies to the other subscription types, with slight changes made on the criteria alone.
 ```excel
 COUNTIF(subscription type, basic).
 ```
 
 Pivot Table Presentation (insert a new sheet for pivot table presentation)
+
 - Revenue by Region: Use a Pivot Table to group by region and calculate total revenue.
 Insert a Pivot Table. Drag Region to the "Rows" area and Revenue to the "Values" area.
 
@@ -109,11 +114,11 @@ Insert a Pivot Table. Drag Region to the "Rows" area and Revenue to the "Values"
    
 - 	Revenue by Subscription Type: Use a Pivot Table to group revenue by subscription type (e.g., monthly, yearly). Insert a Pivot Table. Drag Subscription Type to the "Rows" area and Revenue to the "Values" area.
    
-- Count of Subscription Types: Count how many customers are subscribed to each type: Insert a Pivot Table. Drag Subscription Type to the "Rows" area.mDrag Customer ID to the "Values" area (set it to "Count").
+- Count of Subscription Types: Count how many customers are subscribed to each type: Insert a Pivot Table. Drag Subscription Type to the "Rows" area. Drag Customer ID to the "Values" area (set it to "Count").
   
 - Churn by Subscription Type/Region: Use a Pivot Table to group churned customers by subscription type or region to see if certain segments have higher cancellation rates. Drag Cancelled to the "Rows" area, Subscription Type (or Region) to the "Rows" area, and Revenue to the "Values" area. Set the count of Cancelled to show the number of churned customers.
   
-- Subscription Start Analysis (Growth Over Time): Use a Pivot Table with Month/Year in the "Rows" area and Customer ID in the "Values" area (set to "Count") to see how many new subscriptions were added per time period.
+- Subscription Start Analysis (Growth Over Time): Use a Pivot Table with Month/Year(subscription date) in the "Rows" area and Customer ID in the "Values" area (set to "Count") to see how many new subscriptions were added per period.
   
 - Customer Segmentation: Identify top customers based on revenue. Use a Pivot Table with Customer Name (or Customer ID) in the "Rows" area and Revenue in the "Values" area. Sort by total revenue to find high-value customers.
   
@@ -131,7 +136,7 @@ Insert a Pivot Table. Drag Region to the "Rows" area and Revenue to the "Values"
   
 -	Subscription Duration by Region: Analyze if subscriptions tend to last longer in certain regions. Insert a Pivot Table with Region in the "Rows" area and Subscription Duration in the "Values" area (set to "Average").
   
--	Most Popular Subscription Type: Drag Subscription Type to the "Rows" area. Drag Customer ID to the "Values" area, and make sure it shows "Count of Customer ID." This will show the number of customers subscribed to each subscription type. In the Pivot Table, click the drop-down arrow next to Subscription Type. Choose Sort Largest to Smallest based on the count of Customer ID. The subscription type at the top of the list is the most popular one.
+-	Most Popular Subscription Type: Drag Subscription Type to the "Rows" area. Drag Customer ID to the "Values" area. This will show the number of customers subscribed to each subscription type. In the Pivot Table, click the drop-down arrow next to Subscription Type. Choose Sort Largest to Smallest based on the count of Customer ID. The subscription type at the top of the list is the most popular one.
 
 <img width="960" alt="Screenshot 2024-11-05 133649" src="https://github.com/user-attachments/assets/20268883-ac0d-4f92-95fb-5d84ebeda29d">
 
@@ -142,6 +147,7 @@ Insert a Pivot Table. Drag Region to the "Rows" area and Revenue to the "Values"
 <img width="960" alt="Screenshot 2024-11-05 133649" src="https://github.com/user-attachments/assets/2b326d25-b013-4b8b-9ee1-5e4feb928c96">
 
 Data visualization on Excel:
+
 - Trend Analysis (Graph): Create a line chart to visualize the trend of new subscriptions over time.
 - 	Visualize the data using a pie chart to show the proportion of active and cancelled customers.
 - 	Visualization using Bar Charts for comparing regions, products, or subscription types.
@@ -155,62 +161,68 @@ Data visualization on Excel:
 
 #### Analysis with SQL
 ---
-Since I’ve already given  detailed explanation on how to import my data into my SSMS in my sales repository, I’ll go straight to the various analysis I ran on my customer data. After importing my sales data into my database, the first query I ran was to be able to see the results of my newly imported table. 
+Since I’ve already given a detailed explanation on how to import my data into my SSMS in my sales repository, I’ll go straight to the various analysis I ran on my customer data. After importing my sales data into my database, the first query I ran was to be able to see the results of my newly imported table. 
 ```SQL
-Select * from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET]
+Select * from [dbo].[LITA Capstone Dataset CUSTOMER DATA]
 ```
-This showed me the result of  my table with the fields and a total of 75,000 records. The importation process was quite easy up till the point I got to declaring my primary key. I was confused at first because I assumed I had thoroughly cleaned my data on excel before turning it to a CSV file, but to my amazement I was completely wrong. I still carried out my analysis based on the 75,000 records, until I stumbled on a chat in our data analysis group chat on telegram, God bless those ladies because I owe part of the success of this project to them. So to cut the long story short, I began my research and found out that while it’s not really necessary to declare a primary key it’s quite important cause it helps in cleaning the data and removing duplicates so as to ensure data integrity. If time permitted maybe I may have given analysis based on my unclean data but for purpose of this project I’ll work with my cleaned data. So I had to run another analysis to completely clean my data on SQL. It wasn’t easy but it was absolutely worth it. At the end I had a total of 20 records after cleaning my file in SQL.
+This showed me the result of  my table with the fields and a total of 75,000 records. The importation process was quite easy up till the point I got to declaring my primary key. I was confused at first because I assumed I had thoroughly cleaned my data on excel before turning it to a CSV file, but to my amazement I was totally wrong. So i carried out my analysis based on the 75,000 records, until I stumbled on a chat in our data analysis group chat on telegram (God bless those ladies  I owe part of the success of this project to them). So to cut the long story short, I began my research and found out that while it’s not really necessary to declare a primary key it’s quite important cause it helps in cleaning the data and removing duplicates so as to ensure data integrity. If time permitted maybe I may have given analysis based on my unclean data but for the purpose of this project I’ll work with my cleaned data. Finally I decided to run another analysis to completely clean my data on SQL. It wasn’t easy but it was absolutely worth it. At the end I had a total of 20 records after cleaning my file in SQL.
 
 Below is the outline of the SQL queries that was used for each task:
 
 a.	Retrieve the total number of customers from each region: this return the total number of customers in each region.
 ```sql
-SELECT region, COUNT(CustomerID) AS total_customers FROM [dbo].[LITA Capstone Dataset CUSTOMER DATA SET] GROUP BY region]
+SELECT region, COUNT(CustomerID) AS total_customers FROM [dbo].[LITA Capstone Dataset CUSTOMER DATA] GROUP BY region]
 ```
 
 b.	Find the most popular subscription type by the number of customers: this returns the most popular subscription type from amongst other subscription types.
 ```sql
 SELECT TOP 1 SubscriptionType, COUNT(*) AS total_customers
-FROM [dbo].[LITA Capstone Dataset CUSTOMER DATA SET]
+FROM [dbo].[LITA Capstone Dataset CUSTOMER DATA]
 GROUP BY SubscriptionType
 ```
 
 c.	 Find customers who canceled their subscription within 6 months: this would return the total number of customers who canceled their subscription within six month from the subscription start date to the subscription end date.
 ```sql
 SELECT CustomerName, CustomerID, subscriptionstart, SubscriptionEnd, SubscriptionType,Subsciption_duration
-from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET]
+from [dbo].[LITA Capstone Dataset CUSTOMER DATA]
 WHERE Canceled = 'true' and DATEDIFF(MONTH, SubscriptionEnd, SubscriptionStart) = 6
 ```
 
 d.	 Calculate the average subscription duration for all customers: For calculating the average duration, I used two method one returned avg sub for all customers while the other returned the avg sub as a whole. 
 ```sql
-SELECT customerid, avg(Subsciption_duration) AS avg_duration from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET] group by CustomerID
+SELECT customerid, avg(Subsciption_duration) AS avg_duration
+from [dbo].[LITA Capstone Dataset CUSTOMER DATA] group by CustomerID
 ```
-
+And
 ```sql
-SELECT avg(Subsciption_duration) AS avg_duration from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET]
+SELECT avg(Subsciption_duration) AS avg_duration
+from [dbo].[LITA Capstone Dataset CUSTOMER DATA]
 ```
 
-e.	Find customers with subscriptions longer than 12 months: this calculate the total number of customers with subscriptin duration longer than 12month or 365days
+e.	Find customers with subscriptions longer than 12 months: this calculates the total number of customers with subscription duration longer than 12month or 365days.
 ```sql
-SELECT CustomerName, CustomerID, subscriptionstart, SubscriptionEnd, SubscriptionType,Subsciption_duration, Revenue from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET] WHERE Subsciption_duration> 365
+SELECT CustomerName, CustomerID, subscriptionstart, SubscriptionEnd, SubscriptionType,Subsciption_duration, Revenue
+from [dbo].[LITA Capstone Dataset CUSTOMER DATA] WHERE Subsciption_duration> 365
 ```
 
-f.	Calculate total revenue by subscription type: this would return the amt of revenue generated by each region.
+f.	Calculate total revenue by subscription type: this would return the amt of revenue generated from the sales of each subscription type.
 ```Sql
-SELECT SubscriptionType, SUM(revenue) AS total_revenue from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET] GROUP BY SubscriptionType
+SELECT SubscriptionType, SUM(revenue) AS total_revenue
+from [dbo].[LITA Capstone Dataset CUSTOMER DATA] GROUP BY SubscriptionType
 ```
 
 g.	 Find the top 3 regions by subscription cancellations: this would give you the top three regions with the highest rate of churned customers.
 ```sql
-SELECT top 3 region, COUNT(*) AS total_cancellations from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET] WHERE Canceled = 'true' GROUP BY region ORDER BY total_cancellations DESC
+SELECT top 3 region, COUNT(*) AS total_cancellations
+from [dbo].[LITA Capstone Dataset CUSTOMER DATA]
+WHERE Canceled = 'true' GROUP BY region ORDER BY total_cancellations DESC
 ```
 
 h.	Find the total number of active and canceled subscriptions: this analysis would calculate the total number of canceled and active customers
 ```sql
-SELECT Canceled, COUNT(CustomerID) AS customer_count from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET] group by Canceled
+SELECT Canceled, COUNT(CustomerID) AS customer_count
+from [dbo].[LITA Capstone Dataset CUSTOMER DATA] group by Canceled
 ```
-
 
 Data Visualization with SQL
 
@@ -229,56 +241,56 @@ I also ran some further analysis for the benefit of it. This analysis can be fou
 <img width="960" alt="Screenshot 2024-11-05 134916" src="https://github.com/user-attachments/assets/00ea5e52-83a8-45cc-b3ef-48958906a103">
 
 
-#### POWERBI –CUSTOMER-ANALYSIS
+#### Power BI Customer Analysis and Report
 ---
-After importing my data from my excel workbook into my bi, I had to clean my data cause if you remember I mentioned my excel didn’t do the work. I think it partly because I’m working with a 2007 excel workbook. 
-So I transformed my data, deleted the null column, imputed some conditional columns and made my data type to be accurate. I closed and applied my changes. I calculated some columns and measures on my table view, which can be seen below:
+After importing my data from my excel workbook into my bi, I had to clean my data cause if you remember I mentioned my excel didn’t do the work. I think it's partly because I’m working with a 2007 excel workbook but that's gist for another day.
+So I transformed my data, deleted the null columns, imputed some conditional columns and made my data type to be accurate. I closed and applied my changes. I calculated some columns and measures on my table view, which can be seen below:
 
--	Total Revenue: Sum of revenue from all customers.
-Measure: Create a DAX measure for total revenue, such as; 
+-	Total Revenue: Sum of revenue from all customers. Create a DAX measure for total revenue, such as; 
 ```DAX
-Total Revenue = SUM('Dataset'[Revenue])
+Total Revenue = SUM('CustomerData'[Revenue])
 ```
 
--	Active Subscriptions: Count of active subscriptions at any given time (subscriptions where the current date is between subscription starts and subscription end and cancelled is false).
+-	Active Subscriptions: Count of active subscriptions at any given time (subscriptions where the current date is between subscription starts and subscription end and canceled is false).
 ```DAX
-Active Subscriptions = COUNTROWS(FILTER('Dataset', 'Dataset'[Cancelled] = FALSE && TODAY() >= 'Dataset'[Subscription Start] && TODAY() <= 'Dataset'[Subscription End]))
+Active Subscriptions = COUNTROWS(FILTER(CustomerData', 'CustomerData[Cancelled] = FALSE && TODAY() >= 'CustomerData'[Subscription Start] && TODAY() <= 'CustomerData'[Subscription End]))
 ```
 
 -	Average Subscription Duration: Average of subscription duration for all customers.
 ```DAX
-Avg Subscription Duration = AVERAGE('Dataset'[Subscription Duration])
+Avg Subscription Duration = AVERAGE('CustomerData'[Subscription Duration])
 ```
 
 -	Churn Rate: Percentage of churned customers calculated as.
 ```DAX
-Churn Rate = DIVIDE(COUNTROWS(FILTER('Dataset', 'Dataset'[Churned Customer] = TRUE)), COUNTROWS('Dataset'))
+Churn Rate = DIVIDE(COUNTROWS(FILTER('CustomerData', 'CustomerData'[Churned Customers] = TRUE)), COUNTROWS('CustomerData'))
 ```
 - Customer Lifetime Value (CLV): Sum of revenue over the subscription duration for each customer.
 ```DAX
-CLV = SUMX(VALUES('Dataset'[Customer ID]), CALCULATE(SUM('Dataset'[Revenue])))
+CLV = SUMX(VALUES('CustomerData'[Customer ID]), CALCULATE(SUM('CustomerData'[Revenue])))
 ```
 
 -	Monthly Recurring Revenue (MRR): Sum of monthly revenues from all active subscriptions.
 ```DAX
-MRR = CALCULATE(SUM('Dataset'[Revenue]), FILTER('Dataset', MONTH('Dataset'[Subscription Start]) = MONTH(TODAY()))).
+MRR = CALCULATE(SUM('CustomerData'[Revenue]), FILTER('CustomerData', MONTH('CustomerData'[Subscription Start]) = MONTH(TODAY()))).
 ```
 
 -	Customer Retention Rate: Percentage of customers who continue their subscription over a defined period, highlighting loyalty trends.
 ```DAX
-Retention Rate = DIVIDE(COUNTROWS(FILTER('Dataset', 'Dataset'[Cancelled] = FALSE)), COUNTROWS('Dataset')).
+Retention Rate = DIVIDE(COUNTROWS(FILTER('CustomerData', 'CustomerData'[Cancelled] = FALSE)), COUNTROWS('CustomerData')).
 ```
 
 - New vs. Returning Customers: Count of new customers in a given period compared to returning customers. Helps Understands the balance between acquiring new customers and retaining existing ones.
   
 ```DAX
-New Customers = COUNTROWS(FILTER('Dataset', 'Dataset'[Subscription Start] >= DATE(YEAR(TODAY()), 1, 1)))
-Returning Customers = COUNTROWS(FILTER('Dataset', 'Dataset'[Subscription Start] < DATE(YEAR(TODAY()), 1, 1)))
+New Customers = COUNTROWS(FILTER('CustomerData', 'CustomerData'[Subscription Start] >= DATE(YEAR(TODAY()), 1, 1)))
+
+Returning Customers = COUNTROWS(FILTER('CustomerData', 'CustomerData'[Subscription Start] < DATE(YEAR(TODAY()), 1, 1)))
 ```
 
 Visualizations with BI
 
-I used, line charts and bar charts to show the trend of new and retained subscriptions over time. I also created a time series visual with Order Date or Subscription Start as the x-axis and display the measures above as series, stacked bar charts to compare new and retained subscriptions for different months or years and other visuals are included in the work.
+I used, line charts and bar charts to show the trend of new and retained subscriptions over time, stacked bar charts to compare new and retained subscriptions for different months or years and other visuals are included in the work.
 1. Cards
    - Total Revenue: Display the overall revenue.
    - Active Customers: Number of active customers.
@@ -287,7 +299,7 @@ I used, line charts and bar charts to show the trend of new and retained subscri
    
 2. Line Charts
    - Revenue Over Time: Monthly or quarterly revenue trends.
-   - Churn Rate Over Time: Trends in churn rate across months or years.-
+   - Churn Rate Over Time: Trends in churn rate across months or years.
    - New vs. Retained Subscriptions: Show changes in new and retained subscriptions over time.
      
 3. Bar/Column Charts
@@ -304,7 +316,7 @@ I used, line charts and bar charts to show the trend of new and retained subscri
    - Subscription Type Breakdown: Percentage of customers by subscription type.
      
 6. Tree map
-   - Revenue Contribution by Product or Region: Visualize which products or regions contribute the most to revenue.
+   - Revenue Contribution by subscription type or Region: Visualize which subscription type or regions contribute the most to revenue.
      
 7. Tables
    - Detailed Customer Data: Include columns like customer name, ID, subscription type, start date, end date, revenue, and status.
@@ -314,13 +326,13 @@ I used, line charts and bar charts to show the trend of new and retained subscri
    - Total Revenue and Churn Over Time: Visualize trends with an emphasis on cumulative changes over time.
      
 9. Slicers
-  - Region, Product, and Subscription Type: Let users filter data across multiple visuals for more detailed insights.
-  - Date Filters: Allow filtering by specific time frames (e.g., month, quarter, year).
+   - Region, Product, and Subscription Type: Let users filter data across multiple visuals for more detailed insights.
+   - Date Filters: Allow filtering by specific time frames (e.g., month, quarter, year).
     
 10.  Gauge Chart
-  - Churn Rate vs. Target: Visualize how current churn rate measures up against a set target.
+     - Churn Rate vs. Target: Visualize how current churn rate measures up against a set target.
     
-11. Matrix Visuals
+12. Matrix Visuals
     - Revenue by Region and Product: Present revenue data in a grid format that allows cross-referencing.
     - Customer Count by Subscription Type and Region: Display counts with cross-filtering capabilities.
 
@@ -346,13 +358,15 @@ Actual Visualization
 4.  Customer Retention Strategies: Identify patterns and regions with high churn rates to implement targeted retention strategies.
 
    
-### Intended Audience Data
+### Intended Audience
 ---
 1. Analysts and BI Developers looking for practical examples of integrating Power BI, SQL, and Excel.
    
 2.  Business Managers who need a blueprint for understanding customer behavior and financial performance.
     
-3. Students and Learners interested in business intelligence projects and best practices for analysis and reporting. This project serves as an educational and practical example of how businesses can leverage multiple tools for comprehensive data analysis, driving strategic insights and operational improvements
+3. Students and Learners interested in business intelligence projects and best practices for analysis and reporting.
+   
+4. This project serves as an educational and practical example of how businesses can leverage multiple tools for comprehensive data analysis, driving strategic insights and operational improvements.
 
 
 
