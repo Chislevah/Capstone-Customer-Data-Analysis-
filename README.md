@@ -2,13 +2,15 @@
 
 
 ## Project Tittle: Capstone Customer Analysis
-
+---
 
 ### Overview of the Project
+---
 This project is a comprehensive customer data analysis focused on customer and subscription data. It integrates Power BI, SQL, and Excel to provide multi-faceted insights into revenue generation, customer activity, and subscription trends. The repository is designed to demonstrate end-to-end data analysis, showcasing how data can be transformed into actionable insights through various analytical tools.
 
 
 ### Project Goals 
+---
 - To visualize key performance metrics and trends using Power BI.
    
 - To extract and analyze data using SQL queries for deeper insights.
@@ -19,6 +21,7 @@ This project is a comprehensive customer data analysis focused on customer and s
 
 
 ### Data Analysis Tools
+---
 1. Microsoft Excel
 2. SQL Server
 3. GitHub
@@ -26,12 +29,13 @@ This project is a comprehensive customer data analysis focused on customer and s
    
    
 ### Key Components 
+---
 1. Power BI Analysis:
    - Purpose: Create interactive dashboards and reports to present key insights.
    -  Key Visuals: KPI Cards for tracking total revenue, active customers, and churn rates.
-     1. LIne Charts showing revenue trends and churn rates over time.
-     2.  Bar Charts for regional revenue comparisons and customer segmentation.
-   - Features: Detailed DAX measures for calculating active customers, churned customers, and revenue metrics. Dynamic visuals with slicers for region, product, and subscription type filters.
+      1. LIne Charts showing revenue trends and churn rates over time.
+      2.  Bar Charts for regional revenue comparisons and customer segmentation.
+   - Features: Detailed DAX measures for calculating active customers, churned customers, and revenue metrics. Dynamic visuals with slicers for region, subscription date, and subscription type filters.
 
 2. SQL Analysis:
    - Purpose: Extract and manipulate data directly from the database for custom reporting and deeper analysis.
@@ -43,13 +47,15 @@ This project is a comprehensive customer data analysis focused on customer and s
     -  Key Analyses: Pivot tables summarizing revenue by region and product. Custom charts to illustrate customer growth and segmentation. Use of Excel functions for calculating active and churned customers.
 
 
-### What You Can Learn from This Project Power 
+### What You Can Learn from This Project
+---
 - BI Techniques: How to create interactive dashboards, design visuals for KPIs, and write DAX formulas.
 - SQL Skills: Techniques for data extraction and custom SQL reporting to support business analysis.
 - Excel Analysis: How to use pivot tables, charts, and functions to complement BI and SQL insights.
   
 
 #### Data Analysis with Excel
+---
 To analyze my customer data, I first of all created some new columns to help me through my analyses. The columns I created I named; churned customers, subscription duration and subscription start date.
 1.	Churned customers: created using conditional formatting.
 ```excel
@@ -148,7 +154,7 @@ Data visualization on Excel:
 
 
 #### Analysis with SQL
-
+---
 Since I’ve already given  detailed explanation on how to import my data into my SSMS in my sales repository, I’ll go straight to the various analysis I ran on my customer data. After importing my sales data into my database, the first query I ran was to be able to see the results of my newly imported table. 
 ```SQL
 Select * from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET]
@@ -164,12 +170,15 @@ SELECT region, COUNT(CustomerID) AS total_customers FROM [dbo].[LITA Capstone Da
 
 b.	Find the most popular subscription type by the number of customers: this returns the most popular subscription type from amongst other subscription types.
 ```sql
-SELECT TOP 1 SubscriptionType, COUNT(*) AS total_customers FROM [dbo].[LITA Capstone Dataset CUSTOMER DATA SET] GROUP BY SubscriptionType
+SELECT TOP 1 SubscriptionType, COUNT(*) AS total_customers
+FROM [dbo].[LITA Capstone Dataset CUSTOMER DATA SET]
+GROUP BY SubscriptionType
 ```
 
 c.	 Find customers who canceled their subscription within 6 months: this would return the total number of customers who canceled their subscription within six month from the subscription start date to the subscription end date.
 ```sql
-SELECT CustomerName, CustomerID, subscriptionstart, SubscriptionEnd, SubscriptionType,Subsciption_duration from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET]
+SELECT CustomerName, CustomerID, subscriptionstart, SubscriptionEnd, SubscriptionType,Subsciption_duration
+from [dbo].[LITA Capstone Dataset CUSTOMER DATA SET]
 WHERE Canceled = 'true' and DATEDIFF(MONTH, SubscriptionEnd, SubscriptionStart) = 6
 ```
 
@@ -204,6 +213,7 @@ SELECT Canceled, COUNT(CustomerID) AS customer_count from [dbo].[LITA Capstone D
 
 
 Data Visualization with SQL
+
 I also ran some further analysis for the benefit of it. This analysis can be found in the actual work or seen from my screenshots.
 
 <img width="960" alt="Screenshot 2024-11-05 134110" src="https://github.com/user-attachments/assets/3de4299d-600e-4c2e-8211-467cce2fe0e5">
@@ -220,7 +230,7 @@ I also ran some further analysis for the benefit of it. This analysis can be fou
 
 
 #### POWERBI –CUSTOMER-ANALYSIS
-
+---
 After importing my data from my excel workbook into my bi, I had to clean my data cause if you remember I mentioned my excel didn’t do the work. I think it partly because I’m working with a 2007 excel workbook. 
 So I transformed my data, deleted the null column, imputed some conditional columns and made my data type to be accurate. I closed and applied my changes. I calculated some columns and measures on my table view, which can be seen below:
 
@@ -326,7 +336,7 @@ Actual Visualization
 
       
 ### Importance of this Project
-
+---
 1. Integrated Approach: Combining Power BI, SQL, and Excel for a comprehensive data analysis strategy.
    
 2. Use Cases Business Reporting:Use this project as a blueprint for reporting on customer metrics, revenue performance, and churn analysis.
@@ -337,6 +347,7 @@ Actual Visualization
 
    
 ### Intended Audience Data
+---
 1. Analysts and BI Developers looking for practical examples of integrating Power BI, SQL, and Excel.
    
 2.  Business Managers who need a blueprint for understanding customer behavior and financial performance.
