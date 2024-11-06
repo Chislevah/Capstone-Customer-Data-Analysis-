@@ -40,7 +40,7 @@ This project is a comprehensive customer data analysis focused on customer and s
 2. SQL Analysis:
    - Purpose: Extract and manipulate data directly from the database for custom reporting and deeper analysis.
    -  Example Queries: Revenue Analysis Query: Calculate revenue by product and region. Churn Analysis Query: Identify churned customers based on subscription end and cancellation data.
-   -  SQL Features: Use of sub queries and aggregation functions to analyze data.
+   -  SQL Features: Declaration of a primary key so as to help check the authenticity of the dataset and the integrity of the analysis while working with aggregation functions to analyze data.
 
  3. Excel Analysis:
     - Purpose: Conduct supplementary analysis, create reports, and visualize data using Excel’s pivot tables, charts, and formulas.
@@ -56,17 +56,17 @@ This project is a comprehensive customer data analysis focused on customer and s
 
 #### Data Analysis with Excel
 ---
-To analyze my customer data, I first of all created some new columns to help me through my analyses. The columns I created I named; churned customers, subscription duration and subscription start date.
+To analyze this customer data, I first of all created some new columns to help me through my analyses. They columns I created, I named; churned customers, subscription duration and subscription start date.
 1.	Churned customers: created using conditional formatting.
 ```excel
 =IF(false, 1,0)
 ```
- This means that if canceled is true it should return 1 but if it’s false it should return 0. The false or 0 represents the active customers while the true or 1 represents the churned customers. This column was created in order to be able to run analysis, on actual figures since analysis on text are limited.
-2.	Subscription duration. The next column I created was the subscription duration column. This column was created in order to know the duration of period or the time frame it took from the beginning of the listing till the end of the listing. It’s calculated thus; 
+ This means that if canceled is true it should return 1 but if it’s false it should return 0. The false or 0 represents the active customers while the true or 1 represents the churned customers. This column was created in order to be able to run analysis, on actual figures since analysis on text are limited on excel.
+2.	Subscription duration. The next column I created, was the subscription duration column. This column was created in order to know the duration of period or the time frame it took from the beginning of the listing till the end of the listing. It’s calculated thus; 
 ```excel
 = subscription end – subscription start.
 ```
-3.	Subscription start date: this column was created in order to help format the subscription start into ‘yyyy-mm’ format. This means that the subscription duration would now be in a format of the year and month only. The formula is;
+3.	Subscription start date: This column was created in order to help format the subscription start into ‘yyyy-mm’ format. This means that the subscription duration would now be in a format of the year and month only. This is an optional column. The formula is;
 ```excel
 =TEXT( subscription start, ‘yyyy-mm’).
 ```
@@ -96,7 +96,7 @@ f.	Average subscription duration:
 ```excel
 = AVG(subscription duration)
 ```
-g.	Total number of basic subscription: This applies to the other subscription types also with slight change to the criteria alone.
+g.	Total number of basic subscription: This applies to the other subscription types too, with slight change made on the criteria alone.
 ```excel
 COUNTIF(subscription type, basic).
 ```
